@@ -42,6 +42,7 @@ import com.android.systemui.qs.external.TileServices;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.BatteryTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
+import com.android.systemui.qs.tiles.BrightnessTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
@@ -437,6 +438,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("night")) return new NightModeTile(this);
         else if (tileSpec.equals("sync")) return new SyncTile(this);
         else if (tileSpec.equals("screenshot")) return new ScreenshotTile(this);
+        else if (tileSpec.equals("brightness")) return new BrightnessTile(this);
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(this,tileSpec);
