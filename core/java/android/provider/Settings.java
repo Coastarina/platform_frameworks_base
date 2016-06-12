@@ -3832,6 +3832,24 @@ public final class Settings {
          */
         public static final String VOLUME_ROCKER_MUSIC_CONTROLS = "volume_rocker_music_controls";
 
+         /**
+         * show lockscreen alarm
+         *  @hide
+         */
+        public static final String SHOW_LOCKSCREEN_ALARM = "show_lockscreen_alarm";
+
+        /**
+         * show lockscreen clock
+         *  @hide
+         */
+        public static final String SHOW_LOCKSCREEN_CLOCK = "show_lockscreen_clock";
+
+        /**
+         * show lockscreen date
+         *  @hide
+         */
+        public static final String SHOW_LOCKSCREEN_DATE = "show_lockscreen_date";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
