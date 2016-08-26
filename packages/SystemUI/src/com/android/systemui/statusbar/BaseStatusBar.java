@@ -2400,7 +2400,9 @@ public abstract class BaseStatusBar extends SystemUI implements
             entry.icon.set(ic);
             inflateViews(entry, mStackScroller);
         }
-        updateHeadsUp(key, entry, shouldPeek, alertAgain);
+        if (mUseHeadsUp) {
+            updateHeadsUp(key, entry, shouldPeek, alertAgain);
+        }
         updateNotifications();
 
         if (!notification.isClearable()) {
