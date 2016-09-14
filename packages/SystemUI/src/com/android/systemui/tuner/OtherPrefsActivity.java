@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2015 The Android Open Source Project
+ * Copyright (C) 2016 The Velvet Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,26 +28,20 @@ import android.view.MenuItem;
 import com.android.settingslib.drawer.SettingsDrawerActivity;
 import com.android.systemui.R;
 
-public class TunerActivity extends SettingsDrawerActivity implements
+public class OtherPrefsActivity extends SettingsDrawerActivity implements
         PreferenceFragment.OnPreferenceStartFragmentCallback,
         PreferenceFragment.OnPreferenceStartScreenCallback {
 
-    private static final String TAG_TUNER = "tuner";
+    private static final String TAG = "otherprefstuner";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getFragmentManager().findFragmentByTag(TAG_TUNER) == null) {
+        if (getFragmentManager().findFragmentByTag(TAG) == null) {
             final String action = getIntent().getAction();
-            boolean showDemoMode = action != null && action.equals(
-                    "com.android.settings.action.DEMO_MODE");
-            boolean showNightMode = getIntent().getBooleanExtra(
-                    NightModeFragment.EXTRA_SHOW_NIGHT_MODE, false);
-            final PreferenceFragment fragment = showNightMode ? new NightModeFragment()
-                    : showDemoMode ? new DemoModeFragment()
-                    : new TunerFragment();
+            final PreferenceFragment fragment = new OtherPrefs();
             getFragmentManager().beginTransaction().replace(R.id.content_frame,
-                    fragment, TAG_TUNER).commit();
+                    fragment, TAG).commit();
         }
     }
 
@@ -79,7 +74,7 @@ public class TunerActivity extends SettingsDrawerActivity implements
             transaction.commit();
             return true;
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            Log.d("TunerActivity", "Problem launching fragment", e);
+            Log.d("OtherPrefsActivity", "Problem launching fragment", e);
             return false;
         }
     }
