@@ -33,4 +33,8 @@
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Unable to record screen</string>
 
+    <!-- SystemUI Tuner Parts -->
+    <string name="systemui_tuner_statusbar_title">Other</string>
+    <string name="systemui_tuner_other_title">Other</string>
+
 </resources>
