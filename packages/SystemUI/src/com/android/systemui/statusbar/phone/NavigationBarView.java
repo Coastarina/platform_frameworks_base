@@ -230,15 +230,20 @@ public class NavigationBarView extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        boolean doubleTapNav = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.DOUBLE_TAP_SLEEP_NAVBAR, 0) == 1;
         if (mGestureHelper.onTouchEvent(event)) {
+            if (doubleTapNav) {
+                mDoubleTapGesture.onTouchEvent(event);
+            }
             return true;
         }
         if (mDeadZone != null && event.getAction() == MotionEvent.ACTION_OUTSIDE) {
             mDeadZone.poke(event);
         }
-        if (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.DOUBLE_TAP_SLEEP_NAVBAR, 0) == 1)
+        if (doubleTapNav) {
             mDoubleTapGesture.onTouchEvent(event);
+        }
 
         return super.onTouchEvent(event);
     }
