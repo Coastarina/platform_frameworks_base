@@ -248,6 +248,7 @@
         <activity android:name=".tuner.NavBarTunerActivity"
                   android:enabled="true"
                   android:icon="@drawable/tuner"
+                  android:theme="@style/TunerPreferenceTheme"
                   android:label="@string/nav_bar"
                   android:process=":tuner"
                   android:parentActivityName="com.android.settings.custom.NavigationBarSettings"
