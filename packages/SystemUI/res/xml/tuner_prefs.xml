@@ -18,12 +18,6 @@
     xmlns:sysui="http://schemas.android.com/apk/res-auto"
     android:title="@string/system_ui_tuner">
 
-        <!-- Battery -->
-        <com.android.systemui.tuner.BatteryPreference
-            android:title="@string/battery"
-            android:summary="%s"
-            android:entries="@array/battery_options" />
-
         <!-- Airplane -->
         <com.android.systemui.tuner.StatusBarSwitch
             android:key="airplane"
