@@ -18,16 +18,6 @@
                   xmlns:sysui="http://schemas.android.com/apk/res-auto"
                   android:title="@string/systemui_tuner_other_title">
 
-    <com.android.systemui.tuner.TunerSwitch
-        android:key="qs_show_brightness"
-        android:title="@string/show_brightness"
-        sysui:defValue="true" />
-
-    <com.android.systemui.tuner.TunerSwitch
-            android:key="overview_nav_bar_gesture"
-            android:title="@string/overview_nav_bar_gesture"
-            android:summary="@string/overview_nav_bar_gesture_desc" />
-
     <!-- importance -->
     <Preference
             android:key="power_notification_controls"
@@ -38,27 +28,6 @@
         android:key="color_transform"
         android:title="@string/color_and_appearance"
         android:fragment="com.android.systemui.tuner.ColorAndAppearanceFragment" />
-
-    <PreferenceScreen
-        android:key="volume_and_do_not_disturb"
-        android:title="@string/volume_and_do_not_disturb">
-
-        <!-- Action for this is
-             MetricsConstants.ACTION_TUNER_DO_NOT_DISTURB_VOLUME_PANEL -->
-        <com.android.systemui.tuner.TunerSwitch
-            android:key="sysui_show_full_zen"
-            android:title="@string/tuner_full_zen_title"
-            sysui:metricsAction="314" />
-
-        <!-- Action for this is
-             MetricsConstants.ACTION_TUNER_DO_NOT_DISTURB_VOLUME_SHORTCUT -->
-        <com.android.systemui.tuner.TunerSwitch
-            android:key="sysui_volume_down_silent,sysui_volume_up_silent"
-            android:title="@string/volume_dnd_silent"
-            sysui:defValue="true"
-            sysui:metricsAction="315" />
-
-    </PreferenceScreen>
 
     <Preference
             android:key="demo_mode"
