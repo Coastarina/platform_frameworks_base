@@ -48,9 +48,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.android.internal.logging.MetricsLogger;
+import com.android.internal.widget.LockPatternUtils;
 import com.android.keyguard.KeyguardStatusView;
 import com.android.systemui.AutoReinflateContainer;
 import com.android.systemui.AutoReinflateContainer.InflateListener;
+import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.systemui.DejankUtils;
 import com.android.systemui.EventLogConstants;
 import com.android.systemui.EventLogTags;
@@ -209,6 +211,10 @@ public class NotificationPanelView extends PanelView implements
     private GestureDetector mDoubleTapGesture;
     private boolean mDoubleTapToSleepAnywhere = getResources().getBoolean(R.bool.config_doubletap_lockscreen_sleep);
 
+    // Omni additions
+    private boolean mQsSecureExpandDisabled;
+    private LockPatternUtils mLockPatternUtils;
+
     private Runnable mHeadsUpExistenceChangedRunnable = new Runnable() {
         @Override
         public void run() {
@@ -221,6 +227,7 @@ public class NotificationPanelView extends PanelView implements
     public NotificationPanelView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(!DEBUG);
+        mLockPatternUtils = new LockPatternUtils(context);
         mFalsingManager = FalsingManager.getInstance(context);
 
         mDoubleTapGesture = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener() {
@@ -524,7 +531,7 @@ public class NotificationPanelView extends PanelView implements
     }
 
     public void setQsExpansionEnabled(boolean qsExpansionEnabled) {
-        mQsExpansionEnabled = qsExpansionEnabled;
+        mQsExpansionEnabled = qsExpansionEnabled && !isQsSecureExpandDisabled();
         mQsContainer.setHeaderClickable(qsExpansionEnabled);
     }
 
@@ -867,7 +874,7 @@ public class NotificationPanelView extends PanelView implements
                 && (event.isButtonPressed(MotionEvent.BUTTON_SECONDARY)
                         || event.isButtonPressed(MotionEvent.BUTTON_TERTIARY));
 
-        return oneFingerDrag || twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag;
+        return !isQsSecureExpandDisabled() && (oneFingerDrag || twoFingerDrag || stylusButtonClickDrag || mouseButtonClickDrag);
     }
 
     private void handleQsDown(MotionEvent event) {
@@ -2429,5 +2436,18 @@ public class NotificationPanelView extends PanelView implements
             mOneFingerQuickSettingsIntercept = Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1) == 1;
         }
+    }
+
+    private boolean isQsSecureExpandDisabled() {
+        final boolean keyguardOrShadeShowing = mStatusBarState == StatusBarState.KEYGUARD
+                || mStatusBarState == StatusBarState.SHADE_LOCKED;
+        return mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser()) && mQsSecureExpandDisabled &&
+                keyguardOrShadeShowing;
+    }
+
+    public void updateSettings() {
+        mQsSecureExpandDisabled = Settings.Secure.getIntForUser(
+                mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
+                UserHandle.USER_CURRENT) != 0;
     }
 }
