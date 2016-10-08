@@ -582,6 +582,13 @@ public class NotificationPanelView extends PanelView implements
         expand(true /* animate */);
     }
 
+    private boolean isQsSecureExpandDisabled() {
+        final boolean keyguardOrShadeShowing = mStatusBarState == StatusBarState.KEYGUARD
+                || mStatusBarState == StatusBarState.SHADE_LOCKED;
+        return mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser()) && mQsSecureExpandDisabled &&
+                keyguardOrShadeShowing;
+    }
+
     @Override
     public void fling(float vel, boolean expand) {
         GestureRecorder gr = ((PhoneStatusBarView) mBar).mBar.getGestureRecorder();
@@ -2413,6 +2420,8 @@ public class NotificationPanelView extends PanelView implements
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN), false, this);
+            resolver.registerContentObserver(Settings.Secure.getUriFor(
+                    Settings.Secure.LOCK_QS_DISABLED), false, this);
             update();
         }
 
@@ -2435,19 +2444,8 @@ public class NotificationPanelView extends PanelView implements
             ContentResolver resolver = mContext.getContentResolver();
             mOneFingerQuickSettingsIntercept = Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1) == 1;
+            mQsSecureExpandDisabled = Settings.Secure.getInt(
+                    resolver, Settings.Secure.LOCK_QS_DISABLED, 0) == 1;
         }
-    }
-
-    private boolean isQsSecureExpandDisabled() {
-        final boolean keyguardOrShadeShowing = mStatusBarState == StatusBarState.KEYGUARD
-                || mStatusBarState == StatusBarState.SHADE_LOCKED;
-        return mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser()) && mQsSecureExpandDisabled &&
-                keyguardOrShadeShowing;
-    }
-
-    public void updateSettings() {
-        mQsSecureExpandDisabled = Settings.Secure.getIntForUser(
-                mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
-                UserHandle.USER_CURRENT) != 0;
     }
 }
