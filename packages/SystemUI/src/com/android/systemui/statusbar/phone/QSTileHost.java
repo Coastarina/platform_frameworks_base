@@ -432,8 +432,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("user")) return new UserTile(this);
         else if (tileSpec.equals("battery")) return new BatteryTile(this);
         else if (tileSpec.equals("saver")) return new DataSaverTile(this);
-        else if (tileSpec.equals(NightModeTile.NIGHT_MODE_SPEC))
-            return new NightModeTile(this);
+        else if (tileSpec.equals("night")) return new NightModeTile(this);
         // Intent tiles.
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else if (tileSpec.startsWith(CustomTile.PREFIX)) return CustomTile.create(this,tileSpec);
