@@ -6623,6 +6623,25 @@ public final class Settings {
          */
         public static final String QS_TILES = "sysui_qs_tiles";
 
+         /**
+         * Display style of the status bar battery information
+         * 0: Display the battery an icon in portrait mode
+         * 1: Display the battery as plain text
+         * 2: Hide the battery status information
+         * default: 0
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+
+        /**
+         * Status bar battery %
+         * 0: Hide the battery percentage
+         * 1: Display the battery percentage inside the icon
+         * 2: Display the battery percentage next to the icon
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+
         /**
          * This are the settings to be backed up.
          *
@@ -6698,6 +6717,8 @@ public final class Settings {
             TTY_MODE_ENABLED,
             INCALL_POWER_BUTTON_BEHAVIOR,
             QS_TILES,
+            STATUS_BAR_BATTERY_STYLE,
+            STATUS_BAR_SHOW_BATTERY_PERCENT,
         };
 
         /**
