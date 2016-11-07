@@ -42,6 +42,8 @@
 
     <!-- Screenshot Delete Toast -->
     <string name="delete_screenshot_toast">Screenshot deleted</string>
+    <string name="screenshot_abort_title">No screenshot taken</string>
+    <string name="screenshot_abort_text">Operation aborted</string>
 
     <!-- Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
