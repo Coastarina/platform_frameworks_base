@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    Copyright (c) 2015 The CyanogenMod Project
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="64dp"
-    android:height="64dp"
     android:viewportWidth="24"
-    android:viewportHeight="24">
-
+    android:viewportHeight="24"
+    android:width="24dp"
+    android:height="24dp">
     <path
-        android:fillColor="#FFFFFFFF"
-        android:pathData="M2,21H20V19H2M20,8H18V5H20M20,3H4V13A4,4 0 0,0 8,17H14A4,4 0 0,0 18,13V10H20A2,2 0 0,0 22,8V5C22,3.89 21.1,3 20,3Z" />
+        android:pathData="M17 1.01L7 1C5.9 1 5.01 1.9 5.01 3l0 18c0 1.1 0.89 2 1.99 2l10 0c1.1 0 2 -0.9 2 -2L19 3C19 1.9 18.1 1.01 17 1.01ZM17 19L7 19 7 5 17 5 17 19Z"
+        android:fillColor="#ffffff" />
+    <path
+        android:pathData="M10.029953 9.5150639L9.3532202 8.8471907 8.8231122 9.3732808 9.4960863 10.041154 10.029953 9.5150639Zm-1.0376571 2.1118221l-1.1278892 0 0 0.746227 1.1278892 0 0 -0.746227zm3.3836671 -3.7124791l-0.751926 0 0 1.1006849 0.751926 0 0 -1.100685zm2.800924 1.4588739l-0.530108 -0.5260901 -0.672974 0.6678732 0.530108 0.5260901 0.672974 -0.6678732zm-1.206841 5.1116552l0.672974 0.671604 0.530107 -0.52609 -0.676733 -0.667873 -0.526348 0.522359zm1.037657 -2.85805l0 0.746227 1.12789 0 0 -0.746227 -1.12789 0zM12 9.7613189c-1.244438 0 -2.255778 1.0036751 -2.255778 2.2386801 0 1.235006 1.01134 2.238682 2.255778 2.238682 1.244437 0 2.255777 -1.003676 2.255777 -2.238682 0 -1.235005 -1.01134 -2.2386801 -2.255777 -2.2386801zm-0.375963 6.3242741l0.751926 0 0 -1.100685 -0.751926 0 0 1.100685zm-2.8009248 -1.458874l0.530108 0.52609 0.6729738 -0.671605 -0.5301077 -0.52609 -0.6729741 0.671605z"
+        android:fillColor="#ffffff" />
 </vector>
