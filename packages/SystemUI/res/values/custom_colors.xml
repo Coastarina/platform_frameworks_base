@@ -21,6 +21,6 @@
     <color name="navbutton_ripple_color">#FFFFFFFF</color>
 
     <!-- QS edit page background color -->
-    <color name="qs_edit_item_decoration_bg">#ff384248</color>
+    <color name="qs_edit_item_decoration_bg">@*android:color/material_blue_grey_800</color>
 
 </resources>
